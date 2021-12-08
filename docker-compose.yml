@@ -1,0 +1,40 @@
+version: '3'
+networks:
+  team:
+    external: true
+services:
+  app:
+    container_name: 'team-service'
+    image: node:14.16.0-alpine
+    working_dir: /usr/src/app
+    restart: always
+    command: yarn start:dev
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./:/usr/src/app
+    environment:
+      - PORT='8080'
+    networks:
+      - team
+    depends_on:
+      - app_database
+    links:
+      - app_database
+  #Database app
+  app_database:
+    container_name: 'team-dev-db'
+    image: 'postgres:latest'
+    restart: always
+    volumes:
+      - 'postgresql_master_data:/bitnami/postgresql'
+    ports:
+      - '5432:5432'
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=teams
+    networks:
+      - team
+volumes:
+  postgresql_master_data:
+    driver: local
