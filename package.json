@@ -4,9 +4,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start:dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --no-notify src/shared/infra/server.ts",
-    "docker:up": "docker-compose -f docker-compose.yml up",
-    "docker:down": "docker-compose -f docker-compose.yml down",
+    "start:dev": "env-cmd -f ./.env ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --no-notify src/shared/infra/server.ts",
+    "docker:up": "env-cmd -f ./.env docker-compose -f docker-compose.yml up",
+    "docker:down": "env-cmd -f ./.env docker-compose -f docker-compose.yml down",
     "typeorm": "ts-node-dev  -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
     "lint": "eslint 'src/**/*.ts'",
     "precommit": "lint-staged && yarn lint",
@@ -35,7 +35,7 @@
   "dependencies": {
     "class-transformer": "^0.5.1",
     "class-validator": "^0.13.2",
-    "dotenv": "^10.0.0",
+    "env-cmd": "^10.1.0",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "http-status-codes": "^2.1.4",

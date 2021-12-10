@@ -1,10 +1,11 @@
 import { setupApp } from './app'
+import configEnv from './config/env'
 
 async function main() {
   const app = await setupApp()
 
-  app.listen(8080, () =>
-    console.log('Team Services is running on port 8080 ⚽️'),
+  app.listen(configEnv.appPort, () =>
+    console.log(`Team Services is running on port ${configEnv.appPort} ⚽️`),
   )
 }
 

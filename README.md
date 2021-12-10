@@ -21,6 +21,15 @@ Simple API to control your favorite teams
 
 ## Down the app
 
-    yarn docker:donw
+    yarn docker:down
 
-# REST API
+## API Request
+
+## TEAMS
+
+| Endpoint             | HTTP Method |     Description     |
+| -------------------- | :---------: | :-----------------: |
+| `/teams`             |   `POST`    |    `Create team`    |
+| `/teams`             |    `GET`    |  `List all teams`   |
+| `/teams/{{team_id}}` |    `GET`    |  `Find team by id`  |
+| `/teams/{{team_id}}` |  `DELETE`   | `Delete team by id` |

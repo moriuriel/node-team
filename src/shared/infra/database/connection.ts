@@ -5,7 +5,7 @@ import configEnv from 'shared/infra/config/env'
 async function databaseConnection(): Promise<Connection> {
   return createConnection({
     type: 'postgres',
-    host: configEnv.dbHost,
+    host: String(configEnv.dbHost),
     port: Number(configEnv.dbPort),
     username: configEnv.dbUser,
     password: configEnv.dbPass,
