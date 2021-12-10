@@ -18,4 +18,16 @@ export class TeamRepository implements ITeamRepository {
   async findByName(name: string): Promise<Team> {
     return this.teamRepository.findOne({ where: { name } })
   }
+
+  async findAll(): Promise<Team[]> {
+    return this.teamRepository.find()
+  }
+
+  async findById(id: string): Promise<Team> {
+    return this.teamRepository.findOne(id)
+  }
+
+  async delete(id: string): Promise<void> {
+    await this.teamRepository.delete(id)
+  }
 }

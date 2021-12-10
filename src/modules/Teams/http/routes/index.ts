@@ -7,6 +7,9 @@ const teamRouter = Router()
 
 const teamController = new TeamController()
 
+teamRouter.get('/', teamController.index)
+teamRouter.get('/:id', teamController.find)
+teamRouter.delete('/:id', teamController.delete)
 teamRouter.post('/', validateRequestData(CreateTeamDto), teamController.create)
 
 export { teamRouter }
