@@ -25,7 +25,7 @@ Simple API to control your favorite teams
 
 ## API Request
 
-## TEAMS
+`TEAMS`
 
 | Endpoint             | HTTP Method |     Description     |
 | -------------------- | :---------: | :-----------------: |
