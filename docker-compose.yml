@@ -27,7 +27,8 @@ services:
     image: 'postgres:latest'
     restart: always
     volumes:
-      - 'postgresql_master_data:/bitnami/postgresql'
+      - $HOME/Desktop/PostgreSql-Snippets/infile:/infile
+      - pg_data:/var/lib/postgresql/data/
     ports:
       - '5432:5432'
     environment:
@@ -36,5 +37,5 @@ services:
     networks:
       - team
 volumes:
-  postgresql_master_data:
-    driver: local
+  pg_data:
+  

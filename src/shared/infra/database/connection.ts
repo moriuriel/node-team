@@ -10,6 +10,7 @@ async function databaseConnection(): Promise<Connection> {
     database: 'teams',
     entities: ['./src/modules/**/entities/*.ts'],
     migrations: ['./src/shared/infra/database/migrations/*.ts'],
+    synchronize: false,
     cli: {
       migrationsDir: './src/shared/infra/database/migrations',
     },

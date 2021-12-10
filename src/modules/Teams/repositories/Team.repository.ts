@@ -1,6 +1,10 @@
 import { getRepository, Repository } from 'typeorm'
 import { Team } from '../entities/Team'
-import { ITeamRepository, ITeam } from './ITeamRepository.interface'
+import {
+  ITeamRepository,
+  ITeam,
+  IFindParams,
+} from './ITeamRepository.interface'
 
 export class TeamRepository implements ITeamRepository {
   private readonly teamRepository: Repository<Team>
@@ -19,8 +23,16 @@ export class TeamRepository implements ITeamRepository {
     return this.teamRepository.findOne({ where: { name } })
   }
 
-  async findAll(): Promise<Team[]> {
-    return this.teamRepository.find()
+  async findAll(params: IFindParams): Promise<Team[]> {
+    const { league, name, sport } = params
+
+    return this.teamRepository.find({
+      where: {
+        ...(league ? { league } : {}),
+        ...(name ? { name } : {}),
+        ...(sport ? { sport } : {}),
+      },
+    })
   }
 
   async findById(id: string): Promise<Team> {

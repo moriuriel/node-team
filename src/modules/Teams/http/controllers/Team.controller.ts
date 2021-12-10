@@ -9,25 +9,16 @@ import {
 } from 'modules/Teams/services'
 
 export class TeamController {
-  async create(request: Request, response: Response): Promise<Response> {
-    const { league, logo_url, name, sport } = request.body
+  async index(request: Request, response: Response): Promise<Response> {
+    const { name, league, sport } = request.query
 
-    const createTeamService = container.resolve(CreateTeamService)
-
-    const team = await createTeamService.execute({
-      league,
-      logo_url,
-      name,
-      sport,
-    })
-
-    return response.status(StatusCodes.CREATED).json({ team })
-  }
-
-  async index(_: Request, response: Response): Promise<Response> {
     const findAllTeamsService = container.resolve(FindAllTeamsService)
 
-    const teams = await findAllTeamsService.execute()
+    const teams = await findAllTeamsService.execute({
+      ...(name && { name: String(name) }),
+      ...(league && { league: String(league) }),
+      ...(sport && { sport: String(sport) }),
+    })
 
     return response.status(StatusCodes.OK).json({ teams })
   }
@@ -48,5 +39,20 @@ export class TeamController {
     await deleteService.execute(id)
 
     return response.status(StatusCodes.NO_CONTENT)
+  }
+
+  async create(request: Request, response: Response): Promise<Response> {
+    const { league, logo_url, name, sport } = request.body
+
+    const createTeamService = container.resolve(CreateTeamService)
+
+    const team = await createTeamService.execute({
+      league,
+      logo_url,
+      name,
+      sport,
+    })
+
+    return response.status(StatusCodes.CREATED).json({ team })
   }
 }
