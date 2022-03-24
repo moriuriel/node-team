@@ -5,7 +5,7 @@ networks:
 services:
   app:
     container_name: 'team-service'
-    image: node:14.16.0-alpine
+    image: node:16
     working_dir: /usr/src/app
     restart: always
     command: yarn start:dev
