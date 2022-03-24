@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { CreateTeamDto } from 'modules/Teams/dtos/CreateTeam.dto'
+import { CreateTeamDto } from 'modules/teams/dtos/CreateTeam.dto'
 import { validateRequestData } from 'shared/infra/middleware/validateRequestData'
 import { TeamController } from '../controllers/Team.controller'
 

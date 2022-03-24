@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { teamRouter } from 'modules/Teams/http/routes'
+import { teamRouter } from 'modules/teams/http/routes'
 
 const globalRouter = Router()
 

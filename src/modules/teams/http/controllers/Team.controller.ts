@@ -6,7 +6,7 @@ import {
   DeleteTeamService,
   FindAllTeamsService,
   FindTeamByIdService,
-} from 'modules/Teams/services'
+} from 'modules/teams/services'
 
 export class TeamController {
   async index(request: Request, response: Response): Promise<Response> {
