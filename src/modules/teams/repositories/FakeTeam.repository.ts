@@ -1,6 +1,10 @@
 import { v4 as uuidv4 } from 'uuid'
 import { Team } from '../entities/Team'
-import { ITeam, ITeamRepository } from './ITeamRepository.interface'
+import {
+  IFindParams,
+  ITeam,
+  ITeamRepository,
+} from './ITeamRepository.interface'
 
 export class FakeTeamRespository implements ITeamRepository {
   private teams: Team[] = []
@@ -24,5 +28,29 @@ export class FakeTeamRespository implements ITeamRepository {
     const team = this.teams.find(team => team.name === name)
 
     return team
+  }
+
+  async findAll({ league, name, sport }: IFindParams): Promise<Team[]> {
+    const params = {
+      league,
+      name,
+      sport,
+    }
+
+    const hasParams = params?.league || params?.name || params?.sport
+
+    const teams = this.teams.filter(team => {
+      if (hasParams) {
+        return (
+          (params.league && params.league === team.league) ||
+          (params.name && params.name === team.name) ||
+          (params.sport && params.sport === team.sport)
+        )
+      }
+
+      return team
+    })
+
+    return teams
   }
 }
