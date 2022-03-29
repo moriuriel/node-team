@@ -10,11 +10,11 @@ services:
     restart: always
     command: yarn start:dev
     ports:
-      - '8080:8080'
+      - '${PORT}:${PORT}'
     volumes:
       - ./:/usr/src/app
     environment:
-      - PORT='8080'
+      - PORT=${PORT}
     networks:
       - team
     depends_on:
@@ -30,7 +30,7 @@ services:
       - $HOME/Desktop/PostgreSql-Snippets/infile:/infile
       - pg_data:/var/lib/postgresql/data/
     ports:
-      - '5432:5432'
+      - '${DB_PORT}:${DB_PORT}'
     environment:
       - POSTGRES_PASSWORD=root
       - POSTGRES_DB=teams
