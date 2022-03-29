@@ -1,4 +1,4 @@
-# REST API YOUR TEAMS
+# Rest API Teams
 
 Simple API to control your favorite teams
 
@@ -15,6 +15,10 @@ Simple API to control your favorite teams
 
     cp .env.example .env
 
+## ormconfig.json
+
+    cp ormconfig.example.json ormconfig.json
+
 ## Run the app
 
     yarn docker:up
@@ -22,6 +26,18 @@ Simple API to control your favorite teams
 ## Down the app
 
     yarn docker:down
+
+## Run test
+
+    yarn test
+
+## Run test watch
+
+    yarn test:watch
+
+## Run coverage test
+
+    yarn test:cov
 
 ## API Request
 
