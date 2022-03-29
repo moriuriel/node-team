@@ -53,4 +53,10 @@ export class FakeTeamRespository implements ITeamRepository {
 
     return teams
   }
+
+  async findById(id: string): Promise<Team | undefined> {
+    const team = this.teams.find(team => team.id === id)
+
+    return team
+  }
 }
