@@ -15,8 +15,8 @@ export interface IFindParams {
 
 export interface ITeamRepository {
   create(team: ITeam): Promise<Team>
-  findByName(name: string): Promise<Team>
-  findAll(params: IFindParams): Promise<Team[]>
-  findById(id: string): Promise<Team>
-  delete(id: string): Promise<void>
+  findByName(name: string): Promise<Team | undefined>
+  findAll?(params: IFindParams): Promise<Team[]>
+  findById?(id: string): Promise<Team | undefined>
+  delete?(id: string): Promise<void>
 }

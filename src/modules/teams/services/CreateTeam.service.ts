@@ -1,3 +1,4 @@
+import 'reflect-metadata'
 import { inject, injectable } from 'tsyringe'
 import { StatusCodes } from 'http-status-codes'
 import { AppError } from 'shared/infra/error'
@@ -20,11 +21,12 @@ export class CreateTeamService {
   async execute({ league, logo_url, name, sport }: ITeam): Promise<Team> {
     const hasTeamWithName = await this.teamRepository.findByName(name)
 
-    if (hasTeamWithName)
+    if (hasTeamWithName) {
       throw new AppError({
         message: 'Name already exists',
         statusCode: StatusCodes.UNPROCESSABLE_ENTITY,
       })
+    }
 
     return this.teamRepository.create({ league, logo_url, name, sport })
   }
