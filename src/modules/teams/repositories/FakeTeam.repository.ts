@@ -59,4 +59,12 @@ export class FakeTeamRespository implements ITeamRepository {
 
     return team
   }
+
+  async delete(id: string): Promise<void> {
+    this.teams = []
+
+    const newTeams = this.teams.filter(team => team.id === id)
+
+    this.teams.push(...newTeams)
+  }
 }
